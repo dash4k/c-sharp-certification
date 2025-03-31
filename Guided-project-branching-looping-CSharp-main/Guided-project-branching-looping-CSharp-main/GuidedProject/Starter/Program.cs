@@ -117,6 +117,9 @@ while (flag)
             pause();
             break;
         case "4":
+            if (verifyNicknameAndPersonality()) Console.WriteLine("Data updated successfuly");
+            else Console.WriteLine("An error occured while trying to update the data");
+            pause();
             break;
         case "5":
             break;
@@ -284,20 +287,22 @@ bool addAnimal() {
 }
 
 bool verifyAgeAndPhysical() {
-    bool validInput = false;
     bool edited = false;
     int currentAnimalAge = 0;
 
     for (int i = 0; i < maxPets; i++)
     {
-        if (ourAnimals[i, 0].Length > 6)
+        bool validInput = false;
+        string currID = ourAnimals[i, 0][5..].Trim();
+        if (currID.Length > 1)
         {
-            if (ourAnimals[i, 2][5] == '?' || ourAnimals[i, 2][5] == ' ')
+            string currAge = ourAnimals[i, 2][5..].Trim();
+            if (currAge.Contains('?') || string.IsNullOrEmpty(currAge))
             {
                 while (!validInput)
                 {
                     Console.Clear();
-                    Console.WriteLine($"Enter the age for {ourAnimals[i, 0]}:");
+                    Console.WriteLine($"Enter the age for {currID}:");
                     readResult = Console.ReadLine();
     
                     if (int.TryParse(readResult, out currentAnimalAge)) validInput = true;
@@ -313,13 +318,15 @@ bool verifyAgeAndPhysical() {
             }
     
             validInput = false;
+
+            string currPhysicalDesc = ourAnimals[i, 4][21..].Trim();
     
-            if (ourAnimals[i, 4].Length < 23 || ourAnimals[i, 4].Substring(23, 3) == "tbd")
+            if (currPhysicalDesc.Contains("tbd") || string.IsNullOrEmpty(currPhysicalDesc))
             {
                 while (!validInput)
                 {
                     Console.Clear();
-                    Console.WriteLine($"Enter the physical description for {ourAnimals[i, 0]}:");
+                    Console.WriteLine($"Enter the physical description for {currID}:");
                     readResult = Console.ReadLine();
         
                     if (readResult != null)
@@ -340,54 +347,60 @@ bool verifyAgeAndPhysical() {
     else return false;
 }
 
-// TODO: modify the function
 bool verifyNicknameAndPersonality() {
-    bool validInput = false;
     bool edited = false;
-    int currentAnimalAge = 0;
 
     for (int i = 0; i < maxPets; i++)
     {
-        if (ourAnimals[i, 0].Length > 6)
+        bool validInput = false;
+        string currID = ourAnimals[i, 0][5..].Trim();
+        if (currID.Length > 1)
         {
-            if (ourAnimals[i, 2][5] == '?' || ourAnimals[i, 2][5] == ' ')
+            string currNickname = ourAnimals[i, 3][9..].Trim();
+            if (currNickname.Contains("tbd") || string.IsNullOrEmpty(currNickname))
             {
                 while (!validInput)
                 {
                     Console.Clear();
-                    Console.WriteLine($"Enter the age for {ourAnimals[i, 0]}:");
+                    Console.WriteLine($"Enter the nickname for {currID}:");
                     readResult = Console.ReadLine();
     
-                    if (int.TryParse(readResult, out currentAnimalAge)) validInput = true;
-                    else Console.WriteLine("Please enter a valid pet age");
-                    pause();
+                    if (readResult != null)
+                    {
+                        if (readResult.Length > 2)
+                        {
+                            edited = validInput = true;
+                            ourAnimals[i, 3] = "Nickname: " + readResult;
+
+                        }
+                        else Console.WriteLine("Please enter a valid pet nickname");
+                        pause();
+                    }
                 }
-    
-                animalAge = currentAnimalAge.ToString();
-                ourAnimals[i, 2] = "Age: " + animalAge;
     
                 edited = true;
     
             }
     
             validInput = false;
+
+            string currPersonalityDesc = ourAnimals[i, 5][12..].Trim();
     
-            if (ourAnimals[i, 4].Length < 23 || ourAnimals[i, 4].Substring(23, 3) == "tbd")
+            if (currPersonalityDesc.Contains("tbd") || string.IsNullOrEmpty(currPersonalityDesc))
             {
                 while (!validInput)
                 {
                     Console.Clear();
-                    Console.WriteLine($"Enter the physical description for {ourAnimals[i, 0]}:");
+                    Console.WriteLine($"Enter the personality for {currID}:");
                     readResult = Console.ReadLine();
         
                     if (readResult != null)
                     {
-                        animalPhysicalDescription = readResult;
-                        ourAnimals[i, 4] = "Physical description: " + animalPhysicalDescription;
+                        ourAnimals[i, 5] = "Personality: " + readResult;
                         edited = validInput = true;
                         
                     }
-                    else Console.WriteLine("Please enter something for the physical description.");
+                    else Console.WriteLine("Please enter something for the personality description.");
                     pause();
                 }
             }
