@@ -122,8 +122,14 @@ while (flag)
             pause();
             break;
         case "5":
+            if (editAnimalsAge()) Console.WriteLine("Data updated successfuly");
+            else Console.WriteLine("An error occured while trying to update the data");
+            pause();
             break;
         case "6":
+            if (editAnimalsPersonality()) Console.WriteLine("Data updated successfuly");
+            else Console.WriteLine("An error occured while trying to update the data");
+            pause();
             break;
         case "7":
             break;
@@ -410,3 +416,113 @@ bool verifyNicknameAndPersonality() {
     if (edited) return true;
     else return false;
 }
+
+int getNum(string text)
+{
+    do
+    {
+        Console.Write(text);
+        readResult = Console.ReadLine();
+
+        if(int.TryParse(readResult, out int result)) return result;
+        else Console.WriteLine("\nPlease enter a correct value (integer)!");
+        pause(); 
+    } while (true);
+}
+
+    // Console.WriteLine(" 5. Edit an animal’s age");
+bool editAnimalsAge() {
+    Console.Clear();
+    Console.WriteLine("Select the animal you wish to edit its age:\n");
+
+    bool animalExist = false;
+
+    int[] availableAnimal = new int[maxPets];
+    
+    for (int i = 0; i < maxPets; i++) availableAnimal[i] = 0;
+    
+    for (int i = 0; i < maxPets; i++)
+    {
+        string currAnimalId = ourAnimals[i, 0][5..].Trim();
+        if (currAnimalId.Length > 1)
+        {
+            Console.WriteLine($"{i + 1}. {currAnimalId}, {ourAnimals[i, 3]}");
+            availableAnimal[i] = 1;
+            animalExist = true;
+        }
+    }
+
+    if (!animalExist) return false;
+
+    int choice;
+
+    do
+    {
+        choice = getNum("\nEnter the animal's number: ");
+        if (choice < maxPets && availableAnimal[choice-1] == 1) break;
+        else
+        {
+            Console.WriteLine("Invalid index.");
+            pause();
+        }
+    } while (true);
+
+    int newAge = getNum($"Enter the age for {ourAnimals[choice-1, 0]}:");
+    ourAnimals[choice-1, 2] = "Age: " + newAge.ToString();
+    return true;
+}
+    // Console.WriteLine(" 6. Edit an animal’s personality description");
+
+bool editAnimalsPersonality() {
+    Console.Clear();
+    Console.WriteLine("Select the animal you wish to edit its personality description:\n");
+
+    bool animalExist = false;
+
+    int[] availableAnimal = new int[maxPets];
+    
+    for (int i = 0; i < maxPets; i++) availableAnimal[i] = 0;
+    
+    for (int i = 0; i < maxPets; i++)
+    {
+        string currAnimalId = ourAnimals[i, 0][5..].Trim();
+        if (currAnimalId.Length > 1)
+        {
+            Console.WriteLine($"{i + 1}. {currAnimalId}, {ourAnimals[i, 3]}");
+            availableAnimal[i] = 1;
+            animalExist = true;
+        }
+    }
+
+    if (!animalExist) return false;
+
+    int choice;
+
+    do
+    {
+        choice = getNum("\nEnter the animal's number: ");
+        if (choice < maxPets && availableAnimal[choice-1] == 1) break;
+        else
+        {
+            Console.WriteLine("Invalid index.");
+            pause();
+        }
+    } while (true);
+
+    do
+    {
+        Console.WriteLine($"Enter the personality for {ourAnimals[choice-1, 0]}:");
+        readResult = Console.ReadLine();
+        if (readResult != null)
+        {
+            if (readResult.Length > 1)
+            {
+                ourAnimals[choice-1, 5] = "Personality: " + readResult;
+                break;
+            }
+        }
+    } while (readResult == null || readResult.Length < 2);
+    return true;
+}
+    // Console.WriteLine(" 7. Display all cats with a specified characteristic");
+    // Console.WriteLine(" 8. Display all dogs with a specified characteristic");
