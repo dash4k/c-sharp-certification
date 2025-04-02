@@ -132,8 +132,10 @@ while (flag)
             pause();
             break;
         case "7":
+            displayCatsWithCharacteristic();
             break;
         case "8":
+            displayDogsWithCharacteristic();
             break;
         case "exit":
         flag = false;
@@ -525,4 +527,64 @@ bool editAnimalsPersonality() {
     return true;
 }
     // Console.WriteLine(" 7. Display all cats with a specified characteristic");
+void displayCatsWithCharacteristic()
+{
+    Console.Clear();
+    Console.Write("Enter the physical characteristic of the cats: ");
+    readResult = Console.ReadLine();
+    
+    Console.Clear();
+    Console.WriteLine($"Cat(s) with {readResult} characteristic are:\n");
+    if (readResult != null)
+    {
+        for (int i = 0; i < maxPets; i++)
+        {
+            string currID = ourAnimals[i, 0][5..].Trim();
+            if (currID.Length > 1 && currID[0] == 'c')
+            {
+                if (ourAnimals[i, 4].Contains(readResult))
+                {
+                    for (int j = 0; j < 6; j++)
+                    {
+                        Console.WriteLine(ourAnimals[i, j]);
+                    }
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+
+    pause();
+}
+
     // Console.WriteLine(" 8. Display all dogs with a specified characteristic");
+
+void displayDogsWithCharacteristic()
+{
+    Console.Clear();
+    Console.Write("Enter the physical characteristic of the dogs: ");
+    readResult = Console.ReadLine();
+    
+    Console.Clear();
+    Console.WriteLine($"Dog(s) with {readResult} characteristic are:\n");
+    if (readResult != null)
+    {
+        for (int i = 0; i < maxPets; i++)
+        {
+            string currID = ourAnimals[i, 0][5..].Trim();
+            if (currID.Length > 1 && currID[0] == 'd')
+            {
+                if (ourAnimals[i, 4].Contains(readResult))
+                {
+                    for (int j = 0; j < 6; j++)
+                    {
+                        Console.WriteLine(ourAnimals[i, j]);
+                    }
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+
+    pause();
+}
