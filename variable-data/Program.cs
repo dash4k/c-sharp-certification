@@ -267,34 +267,171 @@ CultureInfo.CurrentCulture = new CultureInfo("en-US");
 
 // Console.Write(formattedLine);
 
-string customerName = "Ms. Barros";
+// string customerName = "Ms. Barros";
 
-string currentProduct = "Magic Yield";
-int currentShares = 2975000;
-decimal currentReturn = 0.1275m;
-decimal currentProfit = 55000000.0m;
+// string currentProduct = "Magic Yield";
+// int currentShares = 2975000;
+// decimal currentReturn = 0.1275m;
+// decimal currentProfit = 55000000.0m;
 
-string newProduct = "Glorious Future";
-decimal newReturn = 0.13125m;
-decimal newProfit = 63000000.0m;
+// string newProduct = "Glorious Future";
+// decimal newReturn = 0.13125m;
+// decimal newProfit = 63000000.0m;
 
-// Your logic here
-Console.WriteLine($"Dear {customerName}");
-Console.WriteLine($"As a customer of our {currentProduct} offering we are excited to tell you about a new financial product that would dramatically increase your return.");
-Console.WriteLine($"\nCurrently, you own {currentShares:N2} shares at a return of {currentReturn:P2}.");
-Console.WriteLine($"\nOur new product, {newProduct} offers a return of {newReturn:P2}. Given your current volume, your potential profit would be {newProfit:C}.\n");
+// // Your logic here
+// Console.WriteLine($"Dear {customerName}");
+// Console.WriteLine($"As a customer of our {currentProduct} offering we are excited to tell you about a new financial product that would dramatically increase your return.");
+// Console.WriteLine($"\nCurrently, you own {currentShares:N2} shares at a return of {currentReturn:P2}.");
+// Console.WriteLine($"\nOur new product, {newProduct} offers a return of {newReturn:P2}. Given your current volume, your potential profit would be {newProfit:C}.\n");
 
-Console.WriteLine("Here's a quick comparison:\n");
+// Console.WriteLine("Here's a quick comparison:\n");
 
-string comparisonMessage = "";
+// string comparisonMessage = "";
 
-// Your logic here
+// // Your logic here
 
-comparisonMessage += currentProduct.PadRight(20);
-comparisonMessage += $"{currentReturn:P2}".PadRight(8);
-comparisonMessage += $"{currentProfit:C}".PadLeft(8);
-comparisonMessage += $"\n{newProduct}".PadRight(21);
-comparisonMessage += $"{newReturn:P2}".PadRight(8);
-comparisonMessage += $"{newProfit:C}".PadLeft(8);
+// comparisonMessage += currentProduct.PadRight(20);
+// comparisonMessage += $"{currentReturn:P2}".PadRight(8);
+// comparisonMessage += $"{currentProfit:C}".PadLeft(8);
+// comparisonMessage += $"\n{newProduct}".PadRight(21);
+// comparisonMessage += $"{newReturn:P2}".PadRight(8);
+// comparisonMessage += $"{newProfit:C}".PadLeft(8);
 
-Console.WriteLine(comparisonMessage);
+// Console.WriteLine(comparisonMessage);
+
+// string message = "Find what is (inside the parentheses)";
+
+// int openingPosition = message.IndexOf('(');
+// int closingPosition = message.IndexOf(')');
+
+// Console.WriteLine(openingPosition);
+// Console.WriteLine(closingPosition);
+
+// openingPosition++;
+
+// int length = closingPosition - openingPosition;
+// Console.WriteLine(message.Substring(openingPosition, length));
+
+// string message = "What is the value <span>between the tags</span>";
+
+// const string openSpan = "<span>";
+// const string closeSpan = "</span>";
+
+// int openingPosition = message.IndexOf(openSpan);
+// int closingPosition = message.IndexOf(closeSpan);
+// Console.WriteLine(openingPosition);
+
+// openingPosition += openSpan.Length;
+// int length = closingPosition - openingPosition;
+// Console.WriteLine(message.Substring(openingPosition, length));
+
+// string message = "hello there!";
+
+// int first_h = message.IndexOf('h');
+// int last_h = message.LastIndexOf('h');
+
+// Console.WriteLine($"For the message: '{message}', the first 'h' is at position {first_h} and the last 'h' is at position {last_h}.");
+// string message = "(What if) I am (only interested) in the last (set of parentheses)?";
+// while (true)
+// {
+//     int openingPosition = message.IndexOf('(');
+//     if (openingPosition == -1) break;
+    
+//     openingPosition += 1;
+//     int closingPosition = message.IndexOf(')');
+//     int length = closingPosition - openingPosition;
+//     Console.WriteLine(message.Substring(openingPosition, length));
+
+//     message = message.Substring(closingPosition + 1);
+// }
+
+// string message = "Hello, world!";
+// char[] charsToFind = { 'a', 'e', 'i' };
+
+// int index = message.IndexOfAny(charsToFind);
+
+// Console.WriteLine($"Found '{message[index]}' in '{message}' at index: {index}.");
+
+// string message = "(What if) I have [different symbols] but every {open symbol} needs a [matching closing symbol]?";
+// Console.WriteLine($"Searching THIS Message: {message}");
+// char[] openSymbols = { '[', '{', '(' };
+// int startPosition = 5;
+// int openingPosition = message.IndexOfAny(openSymbols);
+// Console.WriteLine($"Found WITHOUT using start position: {message.Substring(openingPosition)}");
+
+// openingPosition = message.IndexOfAny(openSymbols, startPosition);
+// Console.WriteLine($"Found WITH using startPosition {startPosition}: {message.Substring(openingPosition)}");
+
+// int closingPosition = 0;
+
+// while (true)
+// {
+//     int openingPosition = message.IndexOfAny(openSymbols, closingPosition);
+    
+//     if (openingPosition == -1) break;
+
+//     string currentSymbol = message.Substring(openingPosition, 1);
+
+//     char matchingSymbol = ' ';
+
+//     switch (currentSymbol)
+//     {
+//         case "[":
+//             matchingSymbol = ']';
+//             break;
+//         case "{":
+//             matchingSymbol = '}';
+//             break;
+//         case "(":
+//             matchingSymbol = ')';
+//             break;
+//     }
+
+//     openingPosition += 1;
+//     closingPosition = message.IndexOf(matchingSymbol, openingPosition);
+
+//     int length = closingPosition - openingPosition;
+//     Console.WriteLine(message.Substring(openingPosition, length));
+// }
+
+// string data = "12345John Smith          5000  3  ";
+// string updatedData = data.Remove(5, 20);
+// Console.WriteLine(updatedData);
+
+// string message = "This--is--ex-amp-le--da-ta";
+// message = message.Replace("--", " ");
+// message = message.Replace("-", "");
+// Console.WriteLine(message);
+
+const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
+
+string quantity = "";
+string output = "";
+
+// Your work here
+int opening = input.IndexOf("<span>");
+int closing = input.IndexOf("</span>");
+
+opening += "<span>".Length;
+
+int length = closing - opening;
+
+quantity = $"Quantity: {input.Substring(opening, length)}";
+
+output = input;
+
+opening = output.IndexOf("<div>");
+closing = output.IndexOf("</div>");
+
+opening += "<div>".Length;
+
+length = closing - opening;
+
+output = output.Substring(opening, length);
+
+output = output.Replace("&trade;", "&reg;");
+
+output = $"Output: {output}";
+
+Console.WriteLine(quantity);
+Console.WriteLine(output);
